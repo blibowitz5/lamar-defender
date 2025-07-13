@@ -29,13 +29,15 @@
     <button id="startBtn" style="font-size:28px; padding:12px 40px; border-radius:12px; background:linear-gradient(90deg,#fff700 0%,#ff00c8 100%); color:#222; font-weight:bold; border:none; box-shadow:0 4px 16px #0006; cursor:pointer; transition:transform 0.1s;">Start Game!</button>
     <div style="margin-top: 40px; font-size: 20px; color: #fff; text-shadow: 1px 1px 0 #000;">Tip: Use <b>←</b> and <b>→</b> to move, <b>Space</b> to throw footballs!</div>
   </div>
-  <div id="mobileControls" style="display:none; position:absolute; left:0; width:100vw; z-index:20; pointer-events:none;">
-    <div id="mobileTopBtns" style="display:flex; justify-content:center; gap:24px; margin-top:18px; pointer-events:auto;">
-      <button id="leftBtn" style="font-size:26px; padding:12px 18px; border-radius:50%; background:#fff700cc; border:none; box-shadow:0 2px 8px #0006; opacity:0.85;">⬅️</button>
-      <button id="rightBtn" style="font-size:26px; padding:12px 18px; border-radius:50%; background:#fff700cc; border:none; box-shadow:0 2px 8px #0006; opacity:0.85;">➡️</button>
-    </div>
-    <div id="mobileBottomBtn" style="display:flex; justify-content:center; margin-top:calc(100vh - 180px); pointer-events:auto;">
-      <button id="throwBtn" style="font-size:28px; padding:14px 22px; border-radius:50%; background:#ff00c8cc; color:#fff; border:none; box-shadow:0 2px 8px #0006; opacity:0.85;">🏈</button>
+  <div id="mobileControls" style="display:none; position:absolute; left:0; width:100vw; z-index:20; pointer-events:none; bottom:40px;">
+    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; pointer-events:auto;">
+      <div id="mobileTopBtns" style="display:flex; justify-content:center; gap:18px;">
+        <button id="leftBtn" style="font-size:26px; padding:12px 18px; border-radius:50%; background:#fff700cc; border:none; box-shadow:0 2px 8px #0006; opacity:0.85;">⬅️</button>
+        <button id="rightBtn" style="font-size:26px; padding:12px 18px; border-radius:50%; background:#fff700cc; border:none; box-shadow:0 2px 8px #0006; opacity:0.85;">➡️</button>
+      </div>
+      <div id="mobileBottomBtn" style="display:flex; justify-content:center; margin-top:6px;">
+        <button id="throwBtn" style="font-size:28px; padding:14px 22px; border-radius:50%; background:#ff00c8cc; color:#fff; border:none; box-shadow:0 2px 8px #0006; opacity:0.85;">🏈</button>
+      </div>
     </div>
   </div>
   <canvas id="gameCanvas" style="display:none; background: #222;"></canvas>
