@@ -7,6 +7,127 @@
   <style>
     body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #222; }
     canvas { background: #fff; border: 2px solid #333; }
+    #startScreen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #6dd5ed 0%, #2193b0 100%);
+      position: absolute;
+      width: 100vw;
+      left: 0;
+      top: 0;
+      z-index: 10;
+      padding: 0 4vw;
+      box-sizing: border-box;
+    }
+    #startScreen h1 {
+      font-size: 8vw;
+      max-font-size: 64px;
+      color: #fff700;
+      text-shadow: 4px 4px 0 #000, 8px 8px 0 #ff00c8;
+      margin-bottom: 0;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+    #startScreen h2 {
+      font-size: 4vw;
+      min-font-size: 20px;
+      color: #fff;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      font-style: italic;
+      text-align: center;
+    }
+    #startScreen .creator {
+      font-size: 3vw;
+      min-font-size: 16px;
+      color: #fff;
+      font-style: italic;
+      margin-bottom: 10px;
+      opacity: 0.8;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+    #startScreen .img-row {
+      display: flex;
+      align-items: center;
+      gap: 6vw;
+      margin-bottom: 30px;
+      justify-content: center;
+    }
+    #startScreen .img-row img {
+      max-height: 22vw;
+      min-height: 80px;
+      max-width: 40vw;
+      height: auto;
+      width: auto;
+    }
+    #startScreen .controls-row {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    #startScreen label, #startScreen select {
+      font-size: 4vw;
+      min-font-size: 18px;
+    }
+    #startBtn {
+      font-size: 5vw;
+      min-font-size: 22px;
+      padding: 12px 40px;
+      border-radius: 12px;
+      background: linear-gradient(90deg,#fff700 0%,#ff00c8 100%);
+      color: #222;
+      font-weight: bold;
+      border: none;
+      box-shadow: 0 4px 16px #0006;
+      cursor: pointer;
+      transition: transform 0.1s;
+      margin-bottom: 10px;
+    }
+    #startScreen .tip {
+      margin-top: 40px;
+      font-size: 3vw;
+      min-font-size: 16px;
+      color: #fff;
+      text-shadow: 1px 1px 0 #000;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      #startScreen {
+        padding: 0 2vw;
+      }
+      #startScreen h1 {
+        font-size: 9vw;
+      }
+      #startScreen h2 {
+        font-size: 5vw;
+      }
+      #startScreen .creator {
+        font-size: 4vw;
+      }
+      #startScreen .img-row {
+        flex-direction: column;
+        gap: 2vw;
+        margin-bottom: 18px;
+      }
+      #startScreen .img-row img {
+        max-height: 28vw;
+        min-height: 60px;
+        max-width: 60vw;
+      }
+      #startBtn {
+        font-size: 6vw;
+        padding: 10px 18vw;
+      }
+      #startScreen .tip {
+        font-size: 4vw;
+      }
+      #startScreen label, #startScreen select {
+        font-size: 5vw;
+      }
+    }
   </style>
 </head>
 <body style="display:flex;justify-content:center;align-items:center;height:100vh;background:#222;">
