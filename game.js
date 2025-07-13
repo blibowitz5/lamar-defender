@@ -51,12 +51,13 @@ const steelerHeight = 90;
 const difficultySettings = {
   easy:   { steelerSpeed: 1, steelerSpawnInterval: 120 },
   medium: { steelerSpeed: 2, steelerSpawnInterval: 80 },
-  hard:   { steelerSpeed: 3, steelerSpawnInterval: 50 }
+  hard:   { steelerSpeed: 5, steelerSpawnInterval: 30 } // much harder
 };
 let currentDifficulty = 'medium';
 let steelerSpeed = difficultySettings[currentDifficulty].steelerSpeed;
 let steelerSpawnInterval = difficultySettings[currentDifficulty].steelerSpawnInterval;
 let steelerSpawnTimer = 0;
+let steelerKillCount = 0;
 
 // Footballs array
 const footballs = [];
@@ -105,6 +106,7 @@ function restartGame() {
   steelerSpawnTimer = 0;
   gameOver = false;
   gameWon = false;
+  steelerKillCount = 0;
   // Start game loop
   gameLoop();
 }
@@ -164,6 +166,7 @@ function update() {
         // Collision! Remove both
         steelers.splice(i, 1);
         footballs.splice(j, 1);
+        steelerKillCount++;
         break;
       }
     }
@@ -218,6 +221,17 @@ function draw() {
     ctx.textAlign = 'center';
     ctx.fillText(gameWon ? 'You Win!' : 'Game Over!', 600/2, 800/2);
   }
+  // In draw(), display the kill count
+  ctx.save();
+  ctx.scale(canvas.width / 600, canvas.height / 800);
+  ctx.font = '32px Impact, sans-serif';
+  ctx.fillStyle = '#fff700';
+  ctx.strokeStyle = '#000';
+  ctx.lineWidth = 3;
+  ctx.textAlign = 'left';
+  ctx.strokeText('Steelers Knocked Down: ' + steelerKillCount, 20, 50);
+  ctx.fillText('Steelers Knocked Down: ' + steelerKillCount, 20, 50);
+  ctx.restore();
   ctx.restore();
 }
 
