@@ -249,4 +249,40 @@ lamarImg.onload = () => {
       };
     };
   };
-}; 
+};
+
+// Show mobile controls if on mobile device
+function isMobile() {
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+}
+const mobileControls = document.getElementById('mobileControls');
+if (isMobile()) {
+  mobileControls.style.display = '';
+}
+
+// Touch controls for mobile
+if (isMobile()) {
+  const leftBtn = document.getElementById('leftBtn');
+  const rightBtn = document.getElementById('rightBtn');
+  const throwBtn = document.getElementById('throwBtn');
+
+  leftBtn.addEventListener('touchstart', (e) => { e.preventDefault(); keys['ArrowLeft'] = true; });
+  leftBtn.addEventListener('touchend', (e) => { e.preventDefault(); keys['ArrowLeft'] = false; });
+  rightBtn.addEventListener('touchstart', (e) => { e.preventDefault(); keys['ArrowRight'] = true; });
+  rightBtn.addEventListener('touchend', (e) => { e.preventDefault(); keys['ArrowRight'] = false; });
+  throwBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (canThrow && !gameOver) {
+      footballs.push({
+        x: lamar.x + lamar.width / 2 - footballWidth / 2,
+        y: lamar.y + lamar.height / 2 - footballHeight / 2
+      });
+      canThrow = false;
+    }
+  });
+  throwBtn.addEventListener('touchend', (e) => { e.preventDefault(); canThrow = true; });
+}
+
+// Prevent scrolling when touching the canvas
+canvas.addEventListener('touchstart', function(e) { e.preventDefault(); }, { passive: false });
+canvas.addEventListener('touchmove', function(e) { e.preventDefault(); }, { passive: false }); 
