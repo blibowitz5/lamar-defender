@@ -1,0 +1,13 @@
+{
+  "name": "workspace",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "python": "^0.0.4"
+  }
+}
