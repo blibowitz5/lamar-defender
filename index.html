@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lamar Defender Game</title>
+  <style>
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #222; }
+    canvas { background: #fff; border: 2px solid #333; }
+  </style>
+</head>
+<body>
+  <div id="startScreen" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, #6dd5ed 0%, #2193b0 100%); position: absolute; width: 100vw; left: 0; top: 0; z-index: 10;">
+    <h1 style="font-size: 64px; color: #fff700; text-shadow: 4px 4px 0 #000, 8px 8px 0 #ff00c8; margin-bottom: 0; letter-spacing: 2px;">Lamar Defender!! 🏈</h1>
+    <h2 style="font-size: 28px; color: #fff; margin-top: 10px; margin-bottom: 30px; font-style: italic;">Dodge the Steelers, defend the MVP!</h2>
+    <div style="display: flex; align-items: center; gap: 60px; margin-bottom: 30px;">
+      <img src="lamar_cartoon_v2-removebg-preview.png" alt="Lamar" style="height: 180px; filter: drop-shadow(0 0 16px #fff700);">
+      <img src="steeler-removebg-preview.png" alt="Steeler" style="height: 150px; filter: drop-shadow(0 0 16px #fff);">
+    </div>
+    <div style="margin-bottom: 20px;">
+      <label for="difficulty" style="color:#fff; font-size:22px; font-weight:bold; margin-right:10px;">Select Difficulty:</label>
+      <select id="difficulty" style="font-size:20px; padding:6px 18px; border-radius:8px; border:2px solid #fff700; background:#fffbe7; color:#222; font-weight:bold;">
+        <option value="easy">Easy 😎</option>
+        <option value="medium" selected>Medium 🏈</option>
+        <option value="hard">Hard 😱</option>
+      </select>
+    </div>
+    <button id="startBtn" style="font-size:28px; padding:12px 40px; border-radius:12px; background:linear-gradient(90deg,#fff700 0%,#ff00c8 100%); color:#222; font-weight:bold; border:none; box-shadow:0 4px 16px #0006; cursor:pointer; transition:transform 0.1s;">Start Game!</button>
+    <div style="margin-top: 40px; font-size: 20px; color: #fff; text-shadow: 1px 1px 0 #000;">Tip: Use <b>←</b> and <b>→</b> to move, <b>Space</b> to throw footballs!</div>
+  </div>
+  <canvas id="gameCanvas" width="600" height="800" style="display:none;"></canvas>
+  <script src="game.js"></script>
+</body>
+</html> 
