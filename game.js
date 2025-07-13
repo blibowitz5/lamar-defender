@@ -61,15 +61,15 @@ let steelerSpawnInterval = difficultySettings[currentDifficulty].steelerSpawnInt
 let steelerSpawnTimer = 0;
 let steelerKillCount = 0;
 
-// Footballs array
-const footballs = [];
-const footballWidth = 25; // 20 * 1.25
-const footballHeight = 50; // 40 * 1.25
-const footballSpeed = 10;
+// DHs array (formerly footballs)
+const DHs = [];
+const DHWidth = 75 * 1.2; // 168.75
+const DHHeight = 150 * 1.2; // 337.5
+const DHSpeed = 3; // 10 / 2
 
-// Load Football image
-const footballImg = new Image();
-footballImg.src = 'football-removebg-preview.png';
+// Load DH image (formerly football image)
+const DHImg = new Image();
+DHImg.src = 'DH-removebg-preview.png';
 
 // Load Football Field image
 const fieldImg = new Image();
@@ -83,11 +83,11 @@ let gameWon = false;
 const keys = {};
 document.addEventListener('keydown', (e) => {
   keys[e.key] = true;
-  if (e.key === ' ' && canThrow && !gameOver) {
+  if (e.key === ' ' && canThrow && !gameOver && canvas.style.display !== 'none') {
     // Throw football from Lamar's center
-    footballs.push({
-      x: lamar.x + lamar.width / 2 - footballWidth / 2,
-      y: lamar.y + lamar.height / 2 - footballHeight / 2
+    DHs.push({
+      x: lamar.x + lamar.width / 2 - DHWidth / 2,
+      y: lamar.y + lamar.height / 2 - DHHeight / 2
     });
     canThrow = false;
   }
@@ -103,7 +103,7 @@ let canThrow = true;
 function restartGame() {
   // Reset all game state
   steelers.length = 0;
-  footballs.length = 0;
+  DHs.length = 0;
   lamar.x = canvas.width / 2;
   steelerSpawnTimer = 0;
   gameOver = false;
@@ -148,26 +148,26 @@ function update() {
       gameWon = false;
     }
   }
-  // Move footballs down
-  for (let i = footballs.length - 1; i >= 0; i--) {
-    footballs[i].y += footballSpeed;
-    // Remove football if off screen (bottom)
-    if (footballs[i].y > canvas.height) {
-      footballs.splice(i, 1);
+  // Move DHs down
+  for (let i = DHs.length - 1; i >= 0; i--) {
+    DHs[i].y += DHSpeed;
+    // Remove DH if off screen (bottom)
+    if (DHs[i].y > canvas.height) {
+      DHs.splice(i, 1);
     }
   }
   // Collision detection
   for (let i = steelers.length - 1; i >= 0; i--) {
-    for (let j = footballs.length - 1; j >= 0; j--) {
+    for (let j = DHs.length - 1; j >= 0; j--) {
       if (
-        footballs[j].x < steelers[i].x + steelerWidth &&
-        footballs[j].x + footballWidth > steelers[i].x &&
-        footballs[j].y < steelers[i].y + steelerHeight &&
-        footballs[j].y + footballHeight > steelers[i].y
+        DHs[j].x < steelers[i].x + steelerWidth &&
+        DHs[j].x + DHWidth > steelers[i].x &&
+        DHs[j].y < steelers[i].y + steelerHeight &&
+        DHs[j].y + DHHeight > steelers[i].y
       ) {
         // Collision! Remove both
         steelers.splice(i, 1);
-        footballs.splice(j, 1);
+        DHs.splice(j, 1);
         steelerKillCount++;
         break;
       }
@@ -210,9 +210,9 @@ function draw() {
   for (const s of steelers) {
     ctx.drawImage(steelerImg, s.x, s.y, steelerWidth, steelerHeight);
   }
-  // Draw footballs
-  for (const f of footballs) {
-    ctx.drawImage(footballImg, f.x, f.y, footballWidth, footballHeight);
+  // Draw DHs
+  for (const d of DHs) {
+    ctx.drawImage(DHImg, d.x, d.y, DHWidth, DHHeight);
   }
   // Game over message
   if (gameOver) {
@@ -245,7 +245,7 @@ function gameLoop() {
 
 lamarImg.onload = () => {
   steelerImg.onload = () => {
-    footballImg.onload = () => {
+    DHImg.onload = () => {
       fieldImg.onload = () => {
         gameLoop();
       };
@@ -285,9 +285,9 @@ if (isMobile()) {
   throwBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
     if (canThrow && !gameOver) {
-      footballs.push({
-        x: lamar.x + lamar.width / 2 - footballWidth / 2,
-        y: lamar.y + lamar.height / 2 - footballHeight / 2
+      DHs.push({
+        x: lamar.x + lamar.width / 2 - DHWidth / 2,
+        y: lamar.y + lamar.height / 2 - DHHeight / 2
       });
       canThrow = false;
       vibrate(50);
