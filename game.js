@@ -12,6 +12,7 @@ startBtn.addEventListener('click', () => {
   startScreen.style.display = 'none';
   canvas.style.display = '';
   difficultySelect.disabled = true;
+  showMobileControls(true);
   restartGame();
 });
 
@@ -22,6 +23,7 @@ function endGame() {
     startScreen.style.display = 'flex';
     canvas.style.display = 'none';
     difficultySelect.disabled = false;
+    showMobileControls(false);
   }, 1500);
 }
 
@@ -256,9 +258,15 @@ function isMobile() {
   return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 }
 const mobileControls = document.getElementById('mobileControls');
-if (isMobile()) {
-  mobileControls.style.display = '';
+
+// Show/hide mobile controls based on game state
+function showMobileControls(show) {
+  if (!isMobile()) return;
+  mobileControls.style.display = show ? '' : 'none';
 }
+
+// Hide mobile controls on home screen
+showMobileControls(false);
 
 // Touch controls for mobile
 if (isMobile()) {
@@ -266,9 +274,13 @@ if (isMobile()) {
   const rightBtn = document.getElementById('rightBtn');
   const throwBtn = document.getElementById('throwBtn');
 
-  leftBtn.addEventListener('touchstart', (e) => { e.preventDefault(); keys['ArrowLeft'] = true; });
+  function vibrate(ms) {
+    if (window.navigator.vibrate) window.navigator.vibrate(ms);
+  }
+
+  leftBtn.addEventListener('touchstart', (e) => { e.preventDefault(); keys['ArrowLeft'] = true; vibrate(30); });
   leftBtn.addEventListener('touchend', (e) => { e.preventDefault(); keys['ArrowLeft'] = false; });
-  rightBtn.addEventListener('touchstart', (e) => { e.preventDefault(); keys['ArrowRight'] = true; });
+  rightBtn.addEventListener('touchstart', (e) => { e.preventDefault(); keys['ArrowRight'] = true; vibrate(30); });
   rightBtn.addEventListener('touchend', (e) => { e.preventDefault(); keys['ArrowRight'] = false; });
   throwBtn.addEventListener('touchstart', (e) => {
     e.preventDefault();
@@ -278,6 +290,7 @@ if (isMobile()) {
         y: lamar.y + lamar.height / 2 - footballHeight / 2
       });
       canThrow = false;
+      vibrate(50);
     }
   });
   throwBtn.addEventListener('touchend', (e) => { e.preventDefault(); canThrow = true; });
