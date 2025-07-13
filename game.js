@@ -170,13 +170,23 @@ function update() {
   }
 }
 
+// Responsive canvas scaling
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.save();
+  ctx.scale(canvas.width / 600, canvas.height / 800);
   // Draw rotated football field background
   ctx.save();
-  ctx.translate(canvas.width / 2, canvas.height / 2);
+  ctx.translate(600 / 2, 800 / 2);
   ctx.rotate(Math.PI / 2); // 90 degrees
-  ctx.drawImage(fieldImg, -canvas.height / 2, -canvas.width / 2, canvas.height, canvas.width);
+  ctx.drawImage(fieldImg, -800 / 2, -600 / 2, 800, 600);
   ctx.restore();
   // Draw Lamar
   ctx.drawImage(lamarImg, lamar.x, lamar.y, lamar.width, lamar.height);
@@ -191,12 +201,13 @@ function draw() {
   // Game over message
   if (gameOver) {
     ctx.fillStyle = 'rgba(0,0,0,0.7)';
-    ctx.fillRect(0, canvas.height/2 - 60, canvas.width, 120);
+    ctx.fillRect(0, 800/2 - 60, 600, 120);
     ctx.fillStyle = '#fff';
     ctx.font = '48px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText(gameWon ? 'You Win!' : 'Game Over!', canvas.width/2, canvas.height/2);
+    ctx.fillText(gameWon ? 'You Win!' : 'Game Over!', 600/2, 800/2);
   }
+  ctx.restore();
 }
 
 function gameLoop() {
