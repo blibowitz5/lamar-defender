@@ -172,8 +172,19 @@ function update() {
 
 // Responsive canvas scaling
 function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  // Maintain 600:800 aspect ratio
+  const aspect = 600 / 800;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  if (width / height > aspect) {
+    width = height * aspect;
+  } else {
+    height = width / aspect;
+  }
+  canvas.width = width;
+  canvas.height = height;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
 }
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();

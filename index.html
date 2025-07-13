@@ -9,7 +9,7 @@
     canvas { background: #fff; border: 2px solid #333; }
   </style>
 </head>
-<body>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;background:#222;">
   <div id="startScreen" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: linear-gradient(135deg, #6dd5ed 0%, #2193b0 100%); position: absolute; width: 100vw; left: 0; top: 0; z-index: 10;">
     <h1 style="font-size: 64px; color: #fff700; text-shadow: 4px 4px 0 #000, 8px 8px 0 #ff00c8; margin-bottom: 0; letter-spacing: 2px;">Lamar Defender!! 🏈</h1>
     <div style="font-size: 22px; color: #fff; font-style: italic; margin-bottom: 10px; opacity: 0.8; letter-spacing: 1px;">~created by Brett Libowitz~</div>
@@ -29,7 +29,7 @@
     <button id="startBtn" style="font-size:28px; padding:12px 40px; border-radius:12px; background:linear-gradient(90deg,#fff700 0%,#ff00c8 100%); color:#222; font-weight:bold; border:none; box-shadow:0 4px 16px #0006; cursor:pointer; transition:transform 0.1s;">Start Game!</button>
     <div style="margin-top: 40px; font-size: 20px; color: #fff; text-shadow: 1px 1px 0 #000;">Tip: Use <b>←</b> and <b>→</b> to move, <b>Space</b> to throw footballs!</div>
   </div>
-  <canvas id="gameCanvas" width="600" height="800" style="width: 100vw; height: 100vh; display:none;"></canvas>
+  <canvas id="gameCanvas" style="display:none; background: #222;"></canvas>
   <script src="game.js"></script>
 </body>
 </html> 
