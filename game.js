@@ -51,9 +51,9 @@ const steelerWidth = 60;
 const steelerHeight = 90;
 // Difficulty settings
 const difficultySettings = {
-  easy:   { steelerSpeed: 0.75, steelerSpawnInterval: 80 },
-  medium: { steelerSpeed: 3.5, steelerSpawnInterval: 53 },
-  hard:   { steelerSpeed: 7, steelerSpawnInterval: 20 } // much harder
+  easy:   { steelerSpeed: 1, steelerSpawnInterval: 120 },
+  medium: { steelerSpeed: 2, steelerSpawnInterval: 80 },
+  hard:   { steelerSpeed: 5, steelerSpawnInterval: 30 } // much harder
 };
 let currentDifficulty = 'medium';
 let steelerSpeed = difficultySettings[currentDifficulty].steelerSpeed;
@@ -63,13 +63,13 @@ let steelerKillCount = 0;
 
 // Footballs array
 const footballs = [];
-const footballWidth = 75; // 100 * 0.75
-const footballHeight = 150; // 200 * 0.75
-const footballSpeed = 5;
+const footballWidth = 25; // 20 * 1.25
+const footballHeight = 50; // 40 * 1.25
+const footballSpeed = 10;
 
 // Load Football image
 const footballImg = new Image();
-footballImg.src = 'DH-removebg-preview.png';
+footballImg.src = 'football-removebg-preview.png';
 
 // Load Football Field image
 const fieldImg = new Image();
@@ -115,11 +115,8 @@ function restartGame() {
 
 function spawnSteeler() {
   // Random x position at bottom
-  const x = Math.random() * (600 - steelerWidth);
-  steelers.push({
-    x,
-    y: 800 - steelerHeight
-  });
+  const x = Math.random() * (canvas.width - steelerWidth);
+  steelers.push({ x, y: canvas.height - steelerHeight });
 }
 
 function update() {
@@ -144,9 +141,8 @@ function update() {
   }
   // Move Steelers up
   for (let i = steelers.length - 1; i >= 0; i--) {
-    // Move Steelers straight up
     steelers[i].y -= steelerSpeed;
-    // Check lose condition (if Steeler reaches Lamar's y area)
+    // Check lose condition
     if (steelers[i].y <= lamar.y + lamar.height / 2) {
       endGame();
       gameWon = false;
