@@ -1,0 +1,20 @@
+modules = ["nodejs-20", "web"]
+run = "run"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "run"]
+
+[workflows]
+runButton = "Start Game Server"
+
+[[workflows.workflow]]
+name = "Start Game Server"
+author = 44960849
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python -m http.server 5000"
